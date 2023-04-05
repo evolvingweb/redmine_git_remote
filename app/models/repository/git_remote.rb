@@ -2,8 +2,9 @@ require 'redmine/scm/adapters/git_adapter'
 require 'pathname'
 require 'fileutils'
 # require 'open3'
-# require File.dirname(__FILE__) + '/../../../lib/redmine_git_remote/poor_mans_capture3'
-require_dependency 'redmine_git_remote/poor_mans_capture3'
+Rails.configuration.to_prepare do
+  require_dependency 'redmine_git_remote/poor_mans_capture3'
+end
 
 class Repository::GitRemote < Repository::Git
 

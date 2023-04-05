@@ -1,9 +1,7 @@
 require 'redmine'
 
-# require File.dirname(__FILE__) + '/lib/redmine_git_remote/repositories_helper_patch'
 Rails.configuration.to_prepare do
   require_dependency "redmine_git_remote/repositories_helper_patch"
-  require_dependency 'redmine_git_remote/poor_mans_capture3'
 end
 Redmine::Scm::Base.add "GitRemote"
 
