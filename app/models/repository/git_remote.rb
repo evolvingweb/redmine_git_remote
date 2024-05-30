@@ -102,7 +102,7 @@ class Repository::GitRemote < Repository::Git
       return "#{clone_url} is not a valid remote."
     end
 
-    if Dir.exists? clone_path
+    if Dir.exist? clone_path
       existing_repo_remote, status = RedmineGitRemote::PoorMansCapture3::capture2("git", "--git-dir", clone_path, "config", "--get", "remote.origin.url")
       return "Unable to run: git --git-dir #{clone_path} config --get remote.origin.url" unless status.success?
 
