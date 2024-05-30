@@ -2,7 +2,9 @@ require 'redmine/scm/adapters/git_adapter'
 require 'pathname'
 require 'fileutils'
 # require 'open3'
-require_dependency 'redmine_git_remote/poor_mans_capture3'
+Rails.configuration.to_prepare do
+  require_dependency 'redmine_git_remote/poor_mans_capture3'
+end
 
 class Repository::GitRemote < Repository::Git
 
@@ -100,7 +102,7 @@ class Repository::GitRemote < Repository::Git
       return "#{clone_url} is not a valid remote."
     end
 
-    if Dir.exists? clone_path
+    if Dir.exist? clone_path
       existing_repo_remote, status = RedmineGitRemote::PoorMansCapture3::capture2("git", "--git-dir", clone_path, "config", "--get", "remote.origin.url")
       return "Unable to run: git --git-dir #{clone_path} config --get remote.origin.url" unless status.success?
 
