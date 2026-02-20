@@ -120,7 +120,6 @@ class Repository::GitRemote < Repository::Git
     end
   end
 
-  unloadable
   def self.scm_name
     'GitRemote'
   end
