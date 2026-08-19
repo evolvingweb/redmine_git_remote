@@ -2,10 +2,10 @@ require 'redmine/scm/adapters/git_adapter'
 require 'pathname'
 require 'fileutils'
 # require 'open3'
-Rails.configuration.to_prepare do
-  require_dependency 'redmine_git_remote/poor_mans_capture3'
-end
 
+# NOTE: RedmineGitRemote::PoorMansCapture3 (lib/) is referenced at runtime in the
+# methods below and autoloads via Zeitwerk — no `to_prepare`/`require_dependency`
+# needed (that anti-pattern no-ops under R7 eager-load). refs #108530.
 class Repository::GitRemote < Repository::Git
 
   before_validation :initialize_clone
